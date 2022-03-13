@@ -1,0 +1,11 @@
+
+.DS_Store
+**/.DS_Store
+
+cred.txt
+**/cred.txt
+
+history_messages/
+history.txt
+last_id.txt
+lastMessage.txt
