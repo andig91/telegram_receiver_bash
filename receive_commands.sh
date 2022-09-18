@@ -102,7 +102,7 @@ while true; do
 				sudo service openvpn@$vpnauswahl start
 				sleep 15
 				ip=$(curl ifconfig.me)
-				curl "https://api.telegram.org/bot$(sed -n 1p cred.txt)/sendMessage?chat_id=$from" -d text="text=VPN Verbindung mit $vpnauswahl erneut aufgebaut, die IP lautet $ip"
+				curl "https://api.telegram.org/bot$(sed -n 1p cred.txt)/sendMessage?chat_id=$from" -d text="VPN Verbindung mit $vpnauswahl erneut aufgebaut, die IP lautet $ip"
 				echo "$(date +"%Y%m%d_%H%M%S");$update_id;$from;$text;VPN $vpnauswahl $ip" >> history.txt
 				vpn=0
 			fi
@@ -111,14 +111,14 @@ while true; do
 			then
 				verstanden=1
 				ip=$(curl ifconfig.me)
-				curl "https://api.telegram.org/bot$(sed -n 1p cred.txt)/sendMessage?chat_id=$from" -d text="text=Die IP lautet $ip"
+				curl "https://api.telegram.org/bot$(sed -n 1p cred.txt)/sendMessage?chat_id=$from" -d text="Die IP lautet $ip"
 				echo "$(date +"%Y%m%d_%H%M%S");$update_id;$from;$text;IP Abfrage $ip" >> history.txt
 			fi
 
 			if [ "$text" = "tastatur_ausblenden" ]
 			then
 				verstanden=1
-				curl -X POST -H "Content-Type: application/json" -d '{"reply_markup":{"remove_keyboard": true }}' "https://api.telegram.org/bot$(sed -n 1p cred.txt)/sendMessage?chat_id=$from&text=OK"
+				curl -X POST -H "Content-Type: application/json" -d '{"reply_markup":{"remove_keyboard": true }}' "https://api.telegram.org/bot$(sed -n 1p cred.txt)/sendMessage?chat_id=$from" -d text="OK"
 				echo "$(date +"%Y%m%d_%H%M%S");$update_id;$from;$text;Tastatur ausblenden" >> history.txt
 			fi
 
